@@ -51,14 +51,15 @@ class BeginSearchViewController: UIViewController
     //Calculate size of label content base on length of string
     static func caculateContentWidthForLabel(string: String, height: Float, font: UIFont) -> CGSize
     {
-        let width = string.width(withConstrainedHeight: TrendItemCollectionViewCell.HEIGHT_OF_LABEL, font:font, minimumTextWrapWidth: 20)
-        if(width <= ( TrendItemCollectionViewCell.DEFAULT_SIZE.width - TrendItemCollectionViewCell.LABEL_PADDING))
+        let totalPadding = 2*TrendItemCollectionViewCell.LABEL_PADDING
+        let width = string.width(withConstrainedHeight: CGFloat(height), font:font, minimumTextWrapWidth:TrendItemCollectionViewCell.DEFAULT_SIZE.width - totalPadding)
+        if(width <= ( TrendItemCollectionViewCell.DEFAULT_SIZE.width - totalPadding))
         {
             return TrendItemCollectionViewCell.DEFAULT_SIZE
         }
         else
         {
-            return CGSize(width:width + 32, height: TrendItemCollectionViewCell.DEFAULT_SIZE.height)
+            return CGSize(width:width + totalPadding, height: TrendItemCollectionViewCell.DEFAULT_SIZE.height)
             
         }
     }
